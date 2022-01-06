@@ -58,7 +58,7 @@ if [ -d "$SOURCE_DIR/requirements" ]; then
     aws s3 sync ${SOURCE_DIR}/requirements s3://${AWS_S3_BUCKET}/requirements --exact-timestamps --delete --region ${AWS_DEFAULT_REGION} $*
     LATEST_VERSION=$(aws s3api list-object-versions --bucket ${AWS_S3_BUCKET} --prefix requirements/requirements.txt --query 'Versions[?IsLatest].[VersionId]' --output text)
     echo "Updating MWAA requirements version to ${LATEST_VERSION}"
-    aws mwaa update-environment --name ${AWS_MWAA_ENVIRONMENT} --requirements-s3-object-version ${LATEST_VERSION}
+    aws mwaa update-environment --name "${AWS_MWAA_ENVIRONMENT}" --requirements-s3-object-version "${LATEST_VERSION}"
 else
   if [ "`aws s3 ls s3://$AWS_S3_BUCKET/requirements/`" != "" ]; then
       echo "Remove requirements folder started"
