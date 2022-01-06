@@ -3,7 +3,7 @@ FROM python:3.6-alpine
 LABEL version="0.1.0"
 
 ENV GLIBC_VER=2.31-r0
-AWS_CLI_VER='2.3.6'
+ENV AWS_CLI_VER=2.3.6
 
 # install glibc compatibility for alpine
 RUN apk --no-cache add \
