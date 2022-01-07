@@ -5,7 +5,9 @@ LABEL version="0.1.0"
 ENV GLIBC_VER=2.31-r0
 ENV AWS_CLI_VER=2.3.6
 
-# install glibc compatibility for alpine
+# We need AWS CLI v2 but it isn't compatible out-of-the-box with alpine so we
+# have to do this magic.
+# For more info: https://stackoverflow.com/questions/61463584/docker-image-with-aws-cli-v2-and-dind-based-on-alpine3-11
 RUN apk --no-cache add \
         binutils \
         curl \
